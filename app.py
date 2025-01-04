@@ -26,7 +26,12 @@ def scrapeProfileData():
     }
     response = session.get(url, params=params, headers=headers)
     response.raise_for_status()
-    obj = response.json()
+    
+    try:
+        obj = response.json()  # Attempt to decode JSON
+    except json.JSONDecodeError as e:
+        raise ValueError("Failed to decode JSON response") from e  # Raise a more informative error
+
     userIdJson = obj["data"]["user"]["id"]
     
     urlQuery = f'{base}/graphql/query/'
