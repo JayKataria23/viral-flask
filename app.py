@@ -69,5 +69,3 @@ def scrapeProfileData():
     # Convert profile_data to JSON format
     return json.dumps(profile_data)  # Return JSON data
 
-if __name__ == "__main__":
-    app.run(debug=False, host="0.0.0.0")
